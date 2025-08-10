@@ -1,142 +1,44 @@
-import React, { useState } from 'react';
-
-interface Token {
-  id: number;
-  token: string;
-  active: boolean;
-}
+import React, { useState, useEffect } from 'react';
+import './AdminPanel.css';
 
 interface AdminPanelProps {
   onClose: () => void;
 }
 
+const STORAGE_KEY = 'vercel_tokens';
+
 const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
-  const [password, setPassword] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [tokens, setTokens] = useState<Token[]>([]);
+  const [tokens, setTokens] = useState<string[]>([]);
   const [newToken, setNewToken] = useState('');
-  const [loading, setLoading] = useState(false);
 
-  const authenticate = () => {
-    if (password === 'admin123' || password === process.env.REACT_APP_ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      loadTokens();
-    } else {
-      alert('Invalid password');
+  // Load tokens from localStorage on component mount
+  useEffect(() => {
+    const storedTokens = localStorage.getItem(STORAGE_KEY);
+    if (storedTokens) {
+      setTokens(JSON.parse(storedTokens));
     }
+  }, []);
+
+  // Save tokens to localStorage whenever they change
+  const saveTokens = (updatedTokens: string[]) => {
+    setTokens(updatedTokens);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedTokens));
   };
 
-  const loadTokens = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch('/api/admin/tokens', {
-        headers: {
-          'password': password
-        }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setTokens(data.tokens);
-      } else {
-        throw new Error('Failed to load tokens');
-      }
-    } catch (error) {
-      console.error('Error loading tokens:', error);
-      alert('Failed to load tokens');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const addToken = async () => {
-    if (!newToken.trim()) {
-      alert('Please enter a token');
+  const addToken = () => {
+    if (!newToken.trim() || tokens.includes(newToken.trim())) {
+      alert('Please enter a valid, unique Vercel API token.');
       return;
     }
-
-    setLoading(true);
-    try {
-      const response = await fetch('/api/admin/tokens', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'password': password
-        },
-        body: JSON.stringify({ token: newToken.trim() })
-      });
-
-      if (response.ok) {
-        setNewToken('');
-        await loadTokens();
-        alert('Token added successfully');
-      } else {
-        throw new Error('Failed to add token');
-      }
-    } catch (error) {
-      console.error('Error adding token:', error);
-      alert('Failed to add token');
-    } finally {
-      setLoading(false);
-    }
+    const updatedTokens = [...tokens, newToken.trim()];
+    saveTokens(updatedTokens);
+    setNewToken('');
   };
 
-  const removeToken = async (index: number) => {
-    if (!confirm('Are you sure you want to remove this token?')) {
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const response = await fetch(`/api/admin/tokens/${index}`, {
-        method: 'DELETE',
-        headers: {
-          'password': password
-        }
-      });
-
-      if (response.ok) {
-        await loadTokens();
-        alert('Token removed successfully');
-      } else {
-        throw new Error('Failed to remove token');
-      }
-    } catch (error) {
-      console.error('Error removing token:', error);
-      alert('Failed to remove token');
-    } finally {
-      setLoading(false);
-    }
+  const removeToken = (tokenToRemove: string) => {
+    const updatedTokens = tokens.filter(token => token !== tokenToRemove);
+    saveTokens(updatedTokens);
   };
-
-  if (!isAuthenticated) {
-    return (
-      <div className="modal-overlay">
-        <div className="modal admin-modal">
-          <div className="modal-header">
-            <h2>Admin Panel</h2>
-            <button className="close-btn" onClick={onClose}>×</button>
-          </div>
-          <div className="modal-content">
-            <div className="login-form">
-              <h3>Authentication Required</h3>
-              <input
-                type="password"
-                placeholder="Enter admin password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && authenticate()}
-                className="password-input"
-              />
-              <button onClick={authenticate} className="auth-btn">
-                Login
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="modal-overlay">
@@ -158,36 +60,30 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
               />
               <button 
                 onClick={addToken} 
-                disabled={loading || !newToken.trim()}
+                disabled={!newToken.trim()}
                 className="add-btn"
               >
-                {loading ? 'Adding...' : 'Add Token'}
+                Add Token
               </button>
             </div>
             <p className="token-info">
               Add multiple Vercel API tokens to automatically rotate when rate limits are reached.
-              Each token allows 100 deployments per day.
+              The primary token is hardcoded; these are additional fallback tokens.
             </p>
           </div>
 
           <div className="admin-section">
-            <h3>Current Tokens ({tokens.length})</h3>
-            {loading ? (
-              <p>Loading...</p>
-            ) : tokens.length === 0 ? (
-              <p>No tokens configured. Add a token to enable deployments.</p>
+            <h3>Stored Fallback Tokens ({tokens.length})</h3>
+            {tokens.length === 0 ? (
+              <p>No fallback tokens stored. Add a token to create a backup for deployments.</p>
             ) : (
               <div className="tokens-list">
                 {tokens.map((token, index) => (
-                  <div key={token.id} className={`token-item ${token.active ? 'active' : ''}`}>
-                    <div className="token-info">
-                      <span className="token-preview">{token.token}</span>
-                      {token.active && <span className="active-badge">Active</span>}
-                    </div>
+                  <div key={index} className="token-item">
+                    <span className="token-preview">...{token.slice(-6)}</span>
                     <button 
-                      onClick={() => removeToken(index)}
+                      onClick={() => removeToken(token)}
                       className="remove-btn"
-                      disabled={loading}
                     >
                       Remove
                     </button>
@@ -200,10 +96,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
           <div className="admin-section">
             <h3>Usage Information</h3>
             <div className="usage-info">
-              <p>• Tokens are automatically rotated for each deployment</p>
-              <p>• Each Vercel token has a limit of 100 deployments per day</p>
-              <p>• Add multiple tokens to increase daily deployment capacity</p>
-              <p>• Tokens are stored securely on the server</p>
+              <p>• The primary token is fixed and cannot be changed here.</p>
+              <p>• These fallback tokens are stored in your browser's local storage.</p>
+              <p>• If a deployment fails with one token, the system automatically tries the next.</p>
             </div>
           </div>
         </div>

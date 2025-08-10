@@ -16,14 +16,11 @@ const AIGenerationModal: React.FC<AIGenerationModalProps> = ({ elements, onClose
   const generateWebsite = async () => {
     setIsGenerating(true);
     try {
-      // Use client-side AI service (perfect for GitHub Pages!)
-      const { default: ClientSideAI } = await import('../services/ClientSideAI');
+      // Use Excalidraw JSON to HTML converter (most accurate!)
+      const { default: ExcalidrawToHTML } = await import('../services/ExcalidrawToHTML');
       
-      // Initialize AI if not already done
-      await ClientSideAI.initialize();
-      
-      // Generate website using client-side AI
-      const result = await ClientSideAI.generateWebsite(elements, customInstructions);
+      // Generate website directly from structured Excalidraw data
+      const result = await ExcalidrawToHTML.generateWebsite(elements, customInstructions);
       
       setGeneratedHTML(result.html);
       setAIComments(Array.isArray(result.comments) ? result.comments.join('\n') : result.comments || 'Generated successfully!');
@@ -59,8 +56,8 @@ const AIGenerationModal: React.FC<AIGenerationModalProps> = ({ elements, onClose
                 <div className="analysis-summary">
                   <p>📊 <strong>Elements detected:</strong> {elements.length}</p>
                   <p>📝 <strong>Text elements:</strong> {elements.filter(el => el.type === 'text').length}</p>
-                  <p>🔷 <strong>Shape elements:</strong> {elements.filter(el => el.type === 'rect').length}</p>
-                  <p>✏️ <strong>Drawings:</strong> {elements.filter(el => el.type === 'path').length}</p>
+                  <p>🔷 <strong>Shape elements:</strong> {elements.filter(el => ['rectangle', 'ellipse', 'diamond'].includes(el.type)).length}</p>
+                  <p>✏️ <strong>Drawings:</strong> {elements.filter(el => ['line', 'arrow', 'freedraw'].includes(el.type)).length}</p>
                 </div>
               </div>
 

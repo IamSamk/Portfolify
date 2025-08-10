@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import type { DeploymentResult } from '../services/DirectVercelAPI';
 
 interface PreviewModalProps {
   html: string;
   onClose: () => void;
-  onDeploy: (projectName: string) => Promise<string>;
+  onDeploy: (projectName: string) => Promise<DeploymentResult>;
 }
 
 const PreviewModal: React.FC<PreviewModalProps> = ({ html, onClose, onDeploy }) => {
   const [projectName, setProjectName] = useState('');
   const [isDeploying, setIsDeploying] = useState(false);
-  const [deployedUrl, setDeployedUrl] = useState('');
+  const [deploymentResult, setDeploymentResult] = useState<DeploymentResult | null>(null);
 
   const handleDeploy = async () => {
     if (!projectName.trim()) {
@@ -18,15 +19,9 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ html, onClose, onDeploy }) 
     }
 
     setIsDeploying(true);
-    try {
-      const url = await onDeploy(projectName.trim().toLowerCase().replace(/\s+/g, '-'));
-      setDeployedUrl(url);
-    } catch (error) {
-      console.error('Deployment failed:', error);
-      alert('Deployment failed. Please try again.');
-    } finally {
-      setIsDeploying(false);
-    }
+    const result = await onDeploy(projectName.trim().toLowerCase().replace(/\s+/g, '-'));
+    setIsDeploying(false);
+    setDeploymentResult(result);
   };
 
   return (
@@ -38,7 +33,7 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ html, onClose, onDeploy }) 
         </div>
 
         <div className="modal-content">
-          {!deployedUrl ? (
+          {!deploymentResult?.success ? (
             <>
               <div className="preview-section">
                 <h3>HTML Preview</h3>
@@ -74,6 +69,12 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ html, onClose, onDeploy }) 
                     {isDeploying ? 'Deploying...' : 'Deploy Now'}
                   </button>
                 </div>
+                {deploymentResult && !deploymentResult.success && (
+                  <div className="error-message">
+                    <p><strong>Deployment Failed:</strong></p>
+                    <p>{deploymentResult.message}</p>
+                  </div>
+                )}
                 <p className="deploy-note">
                   Your portfolio will be deployed to Vercel and available instantly!
                 </p>
@@ -84,13 +85,13 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ html, onClose, onDeploy }) 
               <h3>🎉 Deployment Successful!</h3>
               <p>Your portfolio is now live at:</p>
               <div className="deployed-url">
-                <a href={deployedUrl} target="_blank" rel="noopener noreferrer">
-                  {deployedUrl}
+                <a href={deploymentResult.url} target="_blank" rel="noopener noreferrer">
+                  {deploymentResult.url}
                 </a>
               </div>
               <div className="success-actions">
                 <button 
-                  onClick={() => window.open(deployedUrl, '_blank')}
+                  onClick={() => window.open(deploymentResult.url!, '_blank')}
                   className="visit-btn"
                 >
                   Visit Site
