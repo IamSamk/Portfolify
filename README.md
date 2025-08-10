@@ -58,10 +58,10 @@ Transform your creative vision into production-ready websites using the power of
 ### Method 1: Direct Development
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/portfolio-designer.git
+git clone https://github.com/IamSamk/Portfolify.git
 
 # Navigate to the project
-cd portfolio-designer
+cd Portfolify
 
 # Install dependencies
 npm install
@@ -330,7 +330,7 @@ We welcome contributions! Here's how you can help:
 ### Contribution Workflow
 ```bash
 # Fork and clone the repository
-git clone https://github.com/your-username/portfolio-designer.git
+git clone https://github.com/IamSamk/Portfolify.git
 
 # Create feature branch
 git checkout -b feature/your-feature-name
@@ -359,10 +359,11 @@ git push origin feature/your-feature-name
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 **MIT License Benefits:**
-- ✓ Free for commercial and personal use
-- ✓ Modify and distribute freely
-- ✓ No attribution required (though appreciated)
-- ✓ No warranty provided
+- ✅ **Free Use** - Anyone can use your code for any purpose
+- ✅ **Modify & Distribute** - Others can build upon your work
+- ✅ **Commercial Use** - Companies can use it in their products
+- ✅ **Great for Portfolio** - Shows you support open source community
+- ✅ **No Attribution Required** - Though it's always appreciated!
 
 ---
 
@@ -393,20 +394,19 @@ This project wouldn't exist without the incredible work of the **Excalidraw team
 
 ### Getting Help
 - **Documentation**: This README file
-- **Issues**: [GitHub Issues](https://github.com/yourusername/portfolio-designer/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/portfolio-designer/discussions)
-- **Contact**: [your-email@example.com](mailto:your-email@example.com)
+- **Issues**: [GitHub Issues](https://github.com/IamSamk/Portfolify/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/IamSamk/Portfolify/discussions)
+- **Contact**: Feel free to reach out for questions or collaborations
 
 ### Quick Links
 - **Live Demo**: [Portfolio Designer](http://localhost:5173/Portfolify/)
-- **Download**: [Latest Release](https://github.com/yourusername/portfolio-designer/releases)
-- **Star**: [GitHub Repository](https://github.com/yourusername/portfolio-designer)
+- **Repository**: [GitHub - IamSamk/Portfolify](https://github.com/IamSamk/Portfolify)
 - **🎨 Excalidraw**: [excalidraw.com](https://excalidraw.com/) - The amazing tool that powers this project!
 
 ---
 
 **Made with ❤️ for designers and developers, powered by the incredible Excalidraw**
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/portfolio-designer?style=social)](https://github.com/yourusername/portfolio-designer)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/portfolio-designer?style=social)](https://github.com/yourusername/portfolio-designer)
-[![GitHub issues](https://img.shields.io/github/issues/yourusername/portfolio-designer)](https://github.com/yourusername/portfolio-designer/issues)
+[![GitHub stars](https://img.shields.io/github/stars/IamSamk/Portfolify?style=social)](https://github.com/IamSamk/Portfolify)
+[![GitHub forks](https://img.shields.io/github/forks/IamSamk/Portfolify?style=social)](https://github.com/IamSamk/Portfolify)
+[![GitHub issues](https://img.shields.io/github/issues/IamSamk/Portfolify)](https://github.com/IamSamk/Portfolify/issues)
