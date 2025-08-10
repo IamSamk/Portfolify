@@ -1,8 +1,9 @@
 # Portfolio Designer
 
-> A powerful visual design tool that converts Excalidraw drawings into professional, deployable websites with pixel-perfect accuracy and automated deployment to Vercel.
+> A powerful visual design tool powered by **Excalidraw** that converts your creative drawings into professional, deployable websites with pixel-perfect accuracy and automated deployment to Vercel.
 
 [![Portfolio Designer](https://img.shields.io/badge/Portfolio-Designer-brightgreen)](https://portfolio-designer.vercel.app/)
+[![Excalidraw](https://img.shields.io/badge/Powered%20by-Excalidraw-ff6900)](https://excalidraw.com/)
 [![React](https://img.shields.io/badge/React-18-blue)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
 [![Vercel](https://img.shields.io/badge/Deploy-Vercel-black)](https://vercel.com/)
@@ -16,13 +17,13 @@
 
 ## Key Features
 
-### Visual Design to Code
-Transform your creative vision into production-ready websites:
+### Visual Design to Code with Excalidraw
+Transform your creative vision into production-ready websites using the power of Excalidraw:
 
 | Feature | Description | Technology |
 |---------|-------------|------------|
-| **Canvas Drawing** | Interactive Excalidraw interface | Excalidraw React component |
-| **Real-time Preview** | Instant HTML/CSS conversion | Custom ExcalidrawToHTML service |
+| **Excalidraw Canvas** | Industry-leading interactive drawing interface | Excalidraw React component |
+| **Real-time Preview** | Instant HTML/CSS conversion from Excalidraw data | Custom ExcalidrawToHTML service |
 | **Responsive Design** | Mobile-optimized output | CSS Grid & Flexbox |
 | **SVG Precision** | Pixel-perfect shape rendering | SVG polygon generation |
 | **Live Deployment** | One-click Vercel deployment | Vercel REST API v6 |
@@ -30,11 +31,11 @@ Transform your creative vision into production-ready websites:
 ### Advanced Automation
 
 #### Intelligent Conversion Engine
-- **Shape Recognition** - Automatically detects rectangles, diamonds, ellipses, arrows
-- **Style Preservation** - Maintains colors, strokes, fills, and opacity
-- **Precise Positioning** - Converts coordinates with mathematical accuracy
-- **Typography Support** - Preserves fonts, sizes, and text styling
-- **Color Management** - Full spectrum color support with transparency
+- **Excalidraw Shape Recognition** - Automatically detects rectangles, diamonds, ellipses, arrows from Excalidraw data
+- **Style Preservation** - Maintains colors, strokes, fills, and opacity exactly as drawn in Excalidraw
+- **Precise Positioning** - Converts Excalidraw coordinates with mathematical accuracy
+- **Typography Support** - Preserves fonts, sizes, and text styling from Excalidraw elements
+- **Color Management** - Full spectrum color support with transparency, powered by Excalidraw's color system
 
 #### Deployment Automation
 - **One-Click Deploy** - Direct deployment to Vercel hosting
@@ -44,11 +45,11 @@ Transform your creative vision into production-ready websites:
 - **Live URLs** - Instant access to deployed websites
 
 #### User Experience
-- **Intuitive Interface** - Clean, modern design workflow
-- **Auto-Preview** - See results before deployment
-- **Mobile Responsive** - Works perfectly on all devices
-- **Keyboard Shortcuts** - Efficient workflow controls
-- **Undo/Redo** - Full action history management
+- **Excalidraw Interface** - Clean, intuitive design workflow powered by the best drawing tool
+- **Auto-Preview** - See results before deployment with real-time Excalidraw conversion
+- **Mobile Responsive** - Works perfectly on all devices with Excalidraw's touch support
+- **Keyboard Shortcuts** - Efficient workflow controls inherited from Excalidraw
+- **Undo/Redo** - Full action history management using Excalidraw's built-in system
 
 ---
 
@@ -88,22 +89,22 @@ npm run preview
 
 ## Detailed Usage Guide
 
-### Step 1: Create Your Design
+### Step 1: Create Your Design with Excalidraw
 ```
-Design Elements Supported:
+Excalidraw Elements Supported:
 ✓ Rectangles - Perfect for layouts and containers
-✓ Diamonds - Custom SVG polygon rendering
-✓ Ellipses - Circles and oval shapes
-✓ Lines & Arrows - Connecting elements
-✓ Text Elements - Typography and labels
-✓ Freehand Drawing - Creative illustrations
+✓ Diamonds - Custom SVG polygon rendering from Excalidraw shapes
+✓ Ellipses - Circles and oval shapes drawn in Excalidraw
+✓ Lines & Arrows - Connecting elements with Excalidraw's precision
+✓ Text Elements - Typography and labels using Excalidraw's text tools
+✓ Freehand Drawing - Creative illustrations with Excalidraw's brush tools
 ```
 
 ### Step 2: Preview Your Website
-1. **Real-time Conversion**: See instant HTML preview as you draw
-2. **Style Verification**: Check colors, sizes, and positioning
-3. **Responsive Check**: Verify mobile compatibility
-4. **Interactive Preview**: Test the generated website
+1. **Real-time Conversion**: See instant HTML preview as you draw in Excalidraw
+2. **Style Verification**: Check colors, sizes, and positioning from your Excalidraw design
+3. **Responsive Check**: Verify mobile compatibility of your Excalidraw-generated layout
+4. **Interactive Preview**: Test the generated website converted from your Excalidraw creation
 
 ### Step 3: Deploy to Vercel
 
@@ -132,10 +133,10 @@ Design Elements Supported:
 ### Core Architecture
 - **Frontend Framework**: React 18 with TypeScript
 - **Build Tool**: Vite for optimized development and builds
-- **Canvas Engine**: Excalidraw for interactive drawing
-- **Conversion Engine**: Custom ExcalidrawToHTML service
+- **Canvas Engine**: **Excalidraw** - The industry-leading collaborative drawing tool
+- **Conversion Engine**: Custom ExcalidrawToHTML service for seamless transformation
 - **Deployment**: Vercel REST API v6 integration
-- **State Management**: React hooks and context
+- **State Management**: React hooks and context with Excalidraw state integration
 
 ### Browser Compatibility
 | Browser | Version | Status | Features |
@@ -251,12 +252,12 @@ const DEPLOYMENT_CONFIG = {
 
 #### Design Not Converting
 ```
-Problem: Canvas design doesn't generate HTML
+Problem: Excalidraw design doesn't generate HTML
 Solution:
-1. Ensure elements are properly positioned
-2. Check browser console for errors
-3. Verify Excalidraw data is valid
-4. Try refreshing the page
+1. Ensure elements are properly positioned in Excalidraw
+2. Check browser console for Excalidraw data errors
+3. Verify Excalidraw scene data is valid
+4. Try refreshing the page and redrawing in Excalidraw
 ```
 
 #### Deployment Failures
@@ -273,10 +274,10 @@ Solution:
 ```
 Problem: Preview modal shows blank content
 Solution:
-1. Draw some elements on canvas first
-2. Check if HTML conversion completed
-3. Verify CSS styles are generated
-4. Try different browser
+1. Draw some elements in Excalidraw first
+2. Check if HTML conversion from Excalidraw completed
+3. Verify CSS styles are generated from Excalidraw data
+4. Try different browser or clear Excalidraw cache
 ```
 
 ### Error Codes Reference
@@ -345,11 +346,11 @@ git push origin feature/your-feature-name
 ```
 
 ### Areas for Contribution
-- **New Shape Support** - Add support for additional shapes
-- **Export Formats** - Support for additional export formats
+- **New Shape Support** - Add support for additional Excalidraw shapes and elements
+- **Export Formats** - Support for additional export formats from Excalidraw data
 - **Deployment Platforms** - Integration with other hosting services
-- **Mobile Experience** - Enhanced mobile interface
-- **Templates** - Pre-built design templates
+- **Mobile Experience** - Enhanced mobile interface for Excalidraw touch interactions
+- **Templates** - Pre-built design templates using Excalidraw elements
 
 ---
 
@@ -367,11 +368,26 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- **Excalidraw Team** - For the amazing drawing interface
+- **🎨 Excalidraw Team** - For creating the amazing collaborative drawing tool that powers this entire application. Excalidraw's intuitive interface, powerful drawing capabilities, and excellent React integration made this project possible. Special thanks to the open-source community behind Excalidraw!
 - **Vercel** - For excellent deployment platform and API
 - **React Team** - For the robust frontend framework
 - **TypeScript Team** - For type safety and developer experience
 - **Vite Team** - For lightning-fast build tooling
+
+---
+
+### **🎨 Special Thanks to Excalidraw**
+
+This project wouldn't exist without the incredible work of the **Excalidraw team**. Excalidraw has revolutionized how we think about collaborative drawing and design tools. Their commitment to open-source, user experience, and developer-friendly APIs has made Portfolio Designer possible.
+
+**What makes Excalidraw special:**
+- ✨ **Intuitive Design** - Natural drawing experience that feels like pen and paper
+- 🤝 **Collaborative Features** - Real-time collaboration capabilities
+- 🛠️ **Developer-Friendly** - Excellent React integration and extensible architecture
+- 🎯 **Performance** - Smooth, responsive canvas interactions
+- 💎 **Open Source** - Community-driven development and transparency
+
+**Learn more about Excalidraw:** [excalidraw.com](https://excalidraw.com/)
 
 ---
 
@@ -385,11 +401,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Live Demo**: [Portfolio Designer](http://localhost:5173/Portfolify/)
 - **Download**: [Latest Release](https://github.com/yourusername/portfolio-designer/releases)
 - **Star**: [GitHub Repository](https://github.com/yourusername/portfolio-designer)
-- **Excalidraw**: [excalidraw.com](https://excalidraw.com/)
+- **🎨 Excalidraw**: [excalidraw.com](https://excalidraw.com/) - The amazing tool that powers this project!
 
 ---
 
-**Made with ❤️ for designers and developers**
+**Made with ❤️ for designers and developers, powered by the incredible Excalidraw**
 
 [![GitHub stars](https://img.shields.io/github/stars/yourusername/portfolio-designer?style=social)](https://github.com/yourusername/portfolio-designer)
 [![GitHub forks](https://img.shields.io/github/forks/yourusername/portfolio-designer?style=social)](https://github.com/yourusername/portfolio-designer)
